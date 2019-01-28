@@ -1,5 +1,6 @@
 %{
   "artificery": {:hex, :artificery, "0.4.0", "e0b8d3eb9dfe8f42c08a620f90a2aa9cef5dba9fcdfcecad5c2be451df159a77", [:mix], [], "hexpm"},
   "distillery": {:hex, :distillery, "2.0.12", "6e78fe042df82610ac3fa50bd7d2d8190ad287d120d3cd1682d83a44e8b34dfb", [:mix], [{:artificery, "~> 0.2", [hex: :artificery, repo: "hexpm", optional: false]}], "hexpm"},
-  "recon": {:hex, :recon, "2.4.0", "901ff78b39c754fb4d6fd72dcf0dbd398967bbd2e4d59c08d4d7aa44a73de91d", [:rebar3], [], "hexpm"},
+  "observer_cli": {:hex, :observer_cli, "1.4.1", "8c829bb28e3f316a361216314405fe296d8dd2fd7409dfa53fa4ac1cff3797a0", [:rebar3], [{:recon, "2.3.6", [hex: :recon, repo: "hexpm", optional: false]}], "hexpm"},
+  "recon": {:hex, :recon, "2.3.6", "2bcad0cf621fb277cabbb6413159cd3aa30265c2dee42c968697988b30108604", [:rebar3], [], "hexpm"},
 }

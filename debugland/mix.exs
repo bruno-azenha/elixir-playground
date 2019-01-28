@@ -23,7 +23,8 @@ defmodule Debugland.MixProject do
   defp deps do
     [
       {:distillery, "~> 2.0"},
-      {:recon, "~> 2.4"}
+      {:recon, "~> 2.3"},
+      {:observer_cli, "~> 1.4"}
     ]
   end
 end

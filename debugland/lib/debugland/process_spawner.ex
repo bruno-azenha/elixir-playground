@@ -1,36 +1,19 @@
 defmodule Debugland.ProcessSpawner do
-  use GenServer
+  alias Debugland.Processes.{RunForever, WorkAndWait, ForkBomb}
 
-  alias Debugland.Processes.RunForever
-
-  @impl true
-  def init(_state) do
-    {:ok, nil, {:continue, :init}}
+  def fork_bomb() do
+    spawn_process(&ForkBomb.run/0)
   end
 
-  @impl true
-  def handle_continue(:init, state) do
-    send(self(), :spawn_process)
-    {:noreply, state}
+  def work_and_wait() do
+    spawn_process(&WorkAndWait.run/0)
   end
 
-  @impl true
-  def handle_info(:spawn_process, state) do
-    spawn_process()
-    Process.send_after(self(), :spawn_process, 10000)
-    {:noreply, state}
+  def run_forever() do
+    spawn_process(&RunForever.run/0)
   end
 
-  def handle_info(msg, state) do
-    IO.puts("Handle handle info: #{inspect(msg)}")
-    {:noreply, state}
-  end
-
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
-  end
-
-  defp spawn_process() do
-    Task.Supervisor.start_child(Debugland.TaskSupervisor, fn -> RunForever.run() end)
+  defp spawn_process(function) do
+    Task.start(fn -> function.() end)
   end
 end
